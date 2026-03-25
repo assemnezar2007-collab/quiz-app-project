@@ -1,0 +1,79 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+class question {
+private:
+    string text;
+    string option[4];
+    char coreect_answer;
+public:
+    question(string t, string O_1 , string O_2, string O_3, string O_4, char c)
+    {
+        text = t;
+        option[0] = O_1;
+        option[1] = O_2;
+        option[2] = O_3;
+        option[3] = O_4;
+        coreect_answer = c; 
+
+    }
+    bool ask() {
+         static int i = 1; 
+        cout << "question  (" << i << ")" << endl << text << endl;
+        i++;
+        for (int i = 0; i < 4; i++) {
+            cout << char('a' + i) << ")" << option[i] << endl;
+        }
+        cout << "enter your answer from (a/b/c/d)" << endl; 
+        char user;
+        cin >> user; 
+        if (tolower(user) == coreect_answer) {
+            cout << "Correct" << endl; 
+            return true; 
+        }
+        else {
+            cout << "NOT correct" << endl; 
+            cout << "the answer of question is" << coreect_answer << endl; 
+            return false; 
+        }
+    }
+};
+int main()
+{
+    int question_number = 4; 
+    cout << "welcome to our programming quiz" << endl;
+    cout << "here is " << question_number << " questions in c++ " << endl; 
+    question quiz[4] = {
+         question
+         (
+            "What is the correct way to declare an integer in C++?",
+            "int x;", "integer x;", "num x;", "x : int;",'a'),
+        question(
+            "Which data structure has dynamic size?",
+            "Array", "Vector", "Pointer", "Function",'b'
+        ),
+        question(
+            "What does OOP stand for?",
+            "Object Oriented Programming", "Only One Program", "Object Order Process", "Open Output Program",
+            'a'
+        ),
+
+        question(
+            "Which keyword is used to define a class in C++?",
+            "struct", "define", "class", "object",'c')
+
+    };
+    int score = 0;
+    for (int i = 0; i < 4; i++) {
+        if (quiz[i].ask()) {
+            score++;
+        }
+        else {
+            cout << "------------------------------" << endl; 
+        }
+       
+    }
+    cout << "quiz is over now" << " your score is " << score << "/" << question_number << endl; 
+    return 0;
+
+}
