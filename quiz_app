@@ -1,1 +1,45 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
 
+int main() {
+    const int numquestion = 4;
+    string questions[numquestion] = {
+        "Which of the following is a correct way to declare an integer variable in C++?",
+            "What is the output of: cout << 5 + 2 * 3;",
+            "Which keyword is used to create a loop that repeats a specific number of times?",
+            "Which operator is used to compare two values for equality in C++?"
+    };
+    string options[numquestion][4] = {
+         {"a) int x;", "b) integer x;", "c) num x;", "d) x: int;"},
+            {"a) 21", "b) 11", "c) 17", "d) 25"},
+            {"a) if", "b) while", "c) for", "d) switch"},
+            {"a) =", "b) ==", "c) !=", "d) =>"}
+    };
+    char answers[numquestion] = { 'a','b','c','d' };
+    int score = 0;
+    cout << "Welcome to the C++ Quiz\n";
+    cout << "----------------------------\n";
+    cout << "Answer the following questions:\n";
+    cout << "----------------------------\n";
+    for (int i = 0; i < numquestion; i++) {
+        cout << "Question" << i + 1 << " : " << questions[i] << endl;
+        for (int j = 0; j < 4; j++) {
+            cout << options[i][j] << endl;
+        }
+    
+    cout << "Enter your answer (a/b/c/d) "; 
+    char useranswer; 
+    cin >> useranswer;
+    if (tolower(useranswer) == answers[i]) {
+        cout << "Correct\n";
+      score++;
+    }
+    else {
+        cout << "not correct answer" << endl; 
+    }
+    }
+    cout << "quiz over! you scored " << score << " out of " << numquestion;
+    return 0;
+}
